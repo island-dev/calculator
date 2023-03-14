@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://shoroukaziz.github.io/notion_widgets/calculator -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&amp;family=MuseoModerno:wght@300;400&amp;display=swap" rel="stylesheet">
+    <link href="./calculator_files/css2" rel="stylesheet">
+
+
+    <style>
+
+body {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 23px;
+  color: #2C2C2C;
+  background-color:transparent;
+
+}
+
+.main {
+  max-width: 10%;
+}
+
+a,
+a:visited  {
+  color: goldenrod;
+}
+
+.dark {
+  background : #b7df89 !important;
+}
+
+.button > .over {
+  text-decoration:overline;
+  display: inline-block;
+  position:relative;
+  top: 3px;
+  left: -4px;
+}
+
+.calculator {
+  
+    display: inline-block;
+    background: #2C2C2C;
+    margin: 1% 0;
+    color: black;
+    border-radius: 5%;
+	border: 1px solid #2C2C2C;
+/*     box-shadow: 0px 8px 20px 0px grey; */
+    background-color: #2C2C2C;
+
+  
+}
+
+.calculator button {
+  
+    font-size: x-large;
+    color: #3f3f3f;
+    width: 2.5em;
+    min-height: 2.5em;
+    margin: 0.8%;
+    border-radius: 25%;
+    background-color: #cad8d8;
+    border: 1px solid #ad919100;
+    font-family: 'MuseoModerno', cursive;
+
+}
+
+
+.calculator button:hover,
+#clear:hover,
+#backspace:hover {
+  background: #f7e583!important;
+  color: #626262;
+  transform: scale(0.9);
+  border-radius: 20%;
+}
+
+.calculator button:focus,
+#clear:focus,
+#backspace:focus {
+  outline: none;
+}
+
+.button:active,
+.button-active {
+  background: gold;
+  color: white;
+  transform: scale(0.9);
+}
+
+ #screen{
+    background-color: #ececec;
+    border: 3px solid transparent;
+    /* box-shadow: 3px 3px 3px 3px grey; */
+    border-radius: 29px;
+    width: 80%;
+    height: 120px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    text-align: right;
+    overflow: auto;
+    overflow-wrap: break-word;
+    font-size: 60px;
+    font-family: 'Dosis', sans-serif;
+
+}
+
+    
+
+
+#clean {
+  background: #c4eded;
+}
+
+
+.calculator__row1,
+.calculator__row2,
+.calculator__row3,
+.calculator__row4,
+.calculator__row5 {
+  display: flex;
+  margin: 0 auto;
+     max-width: 80%;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Libre Barcode 128 Text', cursive;
+}
+
+.calculator__row5 {
+  margin-bottom: 3%;
+} 
+
+.footer {
+  /* margin-top: 2%;
+  font-size: medium; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+    </style>
+<style id="custom-cursor" type="text/css">body button, body [type='button'], body input[type='reset'], body input[type='submit'], body [role="button"], ::-webkit-search-cancel-button, ::-webkit-search-decoration, ::-webkit-scrollbar-button, ::-webkit-file-upload-button, [role^=button], .cc_pointer, [type="search"]::-webkit-search-cancel-button, a, select, [type="search"]::-webkit-search-decoration, .paper-button, .ytp-progress-bar-container, input[type=submit], :link, :visited, a > *, img,  ::-webkit-scrollbar-button, .ogdlpmhglpejoiomcodnpjnfgcpmgale_pointer, ::-webkit-file-upload-button, .ytp-volume-panel, #myogdlpmhglpejoiomcodnpjnfgcpmgale .icon, body .custom-cursor-on-hover {cursor: url("data:image/png;base64,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") 4 1, pointer !important;} html,body,body select,body .custom-cursor-default-hover {cursor: url("data:image/png;base64,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") 0 1, auto !important;}</style></head>
+<body cz-shortcut-listen="true">
+    <link href="./calculator_files/css" rel="stylesheet">
+<div id="main">
+		<div class="calculator">
+		<input type="text" id="screen">
+      <div class="calculator__row1">
+    <button class="button">Rad</button>
+    <button class="button">Deg</button>
+                               
+    <h1 style="font-size: 200%;margin-left: 230px;margin-right: 20px;"></h1>
+    <button class="button" id="clean">AC</button>
+</div>
+    <div class="calculator__row2">
+         <button class="button">sin</button>
+         <button class="button">cos</button>
+         <button class="button">tan</button>
+		   <button class="button dark">7</button>
+			<button class="button dark">8</button>
+			<button class="button dark">9</button>
+			<button class="button">*</button>
+    </div>
+	<div class="calculator__row3">
+        <button class="button">x^</button>
+        <button class="button">pi</button>
+        <button class="button">%</button>
+		  <button class="button dark">4</button>
+			<button class="button dark">5</button>
+			<button class="button dark">6</button>
+			<button class="button">/</button>
+	</div>
+	<div class="calculator__row4">
+      <button class="button">ln</button>
+      <button class="button">log</button>
+      <button class="button">x!</button>
+			<button class="button dark">1</button>
+			<button class="button dark">2</button>
+			<button class="button dark">3</button>
+			<button class="button">-</button>
+	</div>
+			<div class="calculator__row5">
+      <button class="button">√<span class="over"></span></button>
+      <button class="button">(</button>
+      <button class="button">)</button>
+			<button class="button">.</button>
+      <button class="button dark">0</button>
+			<button class="button">=</button>
+			<button class="button">+</button>
+</div>
+</div>
+</div>
+
+	
+		
+	
+
+
+<script>
+var display = document.getElementById("screen");
+var buttons = document.getElementsByClassName("button");
+  
+  Array.prototype.forEach.call(buttons, function(button) {
+  button.addEventListener("click", function() {
+    if (button.textContent != "=" && 
+    button.textContent != "AC" && 
+    button.textContent != "*" && 
+    button.textContent != "/" && 
+    button.textContent != "√" && 
+    button.textContent != "+" && 
+    button.textContent != "%" && 
+    button.textContent != "=" && 
+    button.textContent != "-" && 
+    button.textContent != "sin" && 
+    button.textContent != "cos" && 
+    button.textContent != "tan" && 
+    button.textContent != "log" && 
+    button.textContent != "ln" && 
+    button.textContent != "x^" && 
+    button.textContent != "x!" && 
+    button.textContent != "pi" && 
+    button.textContent != "Rad" 
+    && button.textContent != "Deg") {
+      display.value += button.textContent;
+    } else if (button.textContent === "=") {
+      equals();
+    } else if (button.textContent === "AC") {
+      clear();
+    } else if (button.textContent === "*") {
+      multiply();
+    } else if (button.textContent === "/") {
+      divide();
+    } else if (button.textContent === "+") {
+      plus();
+      } else if (button.textContent === "-") {
+      Minus();
+    } else if (button.textContent === "%") {
+      percent();
+    } else if (button.textContent === "pi") {
+      pi();
+    } else if (button.textContent === "√") {
+      squareRoot();
+    } else if (button.textContent === "sin") {
+      sin();
+    } else if (button.textContent === "cos") {
+      cos();
+    } else if (button.textContent === "tan") {
+      tan();
+    } else if (button.textContent === "log") {
+      log();
+    } else if (button.textContent === "ln") {
+      ln();
+    } else if (button.textContent === "x^") {
+      exponent();
+    } else if (button.textContent === "x!") {
+      factorial();
+    } else if (button.textContent === "Rad") {
+      radians();
+    } else if (button.textContent === "Deg") {
+      degrees();
+    }
+  });
+});
+
+
+function syntaxError() {
+  if (eval(display.value) == SyntaxError || eval(display.value) == ReferenceError || eval(display.value) == TypeError) {
+    display.value == "Syntax Error";
+  }
+}
+
+
+function equals() {
+  if ((display.value).indexOf("^") > -1) {
+    var base = (display.value).slice(0, (display.value).indexOf("^"));
+    var exponent = (display.value).slice((display.value).indexOf("^") + 1);
+    display.value = eval("Math.pow(" + base + "," + exponent + ")");
+  } else {
+    display.value = eval(display.value)
+    checkLength()
+    syntaxError()
+  }
+}
+
+function clear() {
+  display.value = "";
+}
+
+
+function multiply() {
+  display.value += "*";
+}
+
+function divide() {
+  display.value +=  "/";
+}
+function plus() {
+  display.value +=  "+";
+}
+
+function Minus() {
+  display.value +=  "-";
+}
+
+function factorial() {
+  var number = 1;
+  if (display.value === 0) {
+    display.value = "1";
+  } else if (display.value < 0) {
+    display.value = "undefined";
+  } else {
+    var number = 1;
+    for (var i = display.value; i > 0; i--) {
+      number *=  i;
+    }
+    display.value = number;
+  }
+}
+
+function pi() {
+  display.value = (display.value * Math.PI);
+}
+
+function square() {
+  display.value = eval(display.value * display.value);
+}
+
+function squareRoot() {
+  display.value = Math.sqrt(display.value);
+}
+
+function percent() {
+  display.value = display.value / 100;
+}
+
+function sin() {
+  display.value = Math.sin(display.value);
+}
+
+	
+function cos() {
+  display.value = Math.cos(display.value);
+}
+
+function tan() {
+  display.value = Math.tan(display.value);
+}
+
+function log() {
+  display.value = Math.log10(display.value);
+}
+
+function ln() {
+  display.value = Math.log(display.value);
+}
+
+function exponent() {
+  display.value += "^";
+}
+
+
+function radians() {
+  display.value = display.value * (Math.PI / 180);
+}
+
+function degrees() {
+  display.value = display.value * (180 / Math.PI);
+}
+
+</script>
+
+
+</body></html>
